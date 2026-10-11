@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b16">
+<title>Snap MC | Staff Applications</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#home"><span class="crown">♛</span><span>SNAP <b>MC</b><small>STAFF PORTAL</small></span></a>
+  <nav><a href="#home">Home</a><a href="#apply">Apply</a><a href="#requirements">Requirements</a><a href="#dashboard">Dashboard</a></nav>
+  <span class="open-pill"><i></i> Applications Open</span>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">WELCOME TO SNAP MC</p>
+    <h1>JOIN OUR<br><span>STAFF TEAM</span></h1>
+    <p class="lead">Help us build a better Minecraft community. Apply to become part of the Snap MC staff team.</p>
+    <div class="actions"><a class="btn primary" href="#apply">Apply Now <b>→</b></a><a class="btn" href="#requirements">View Requirements</a></div>
+  </div>
+  <div class="portal-art" aria-label="Minecraft-inspired portal artwork">
+    <div class="moon"></div><div class="mountain m1"></div><div class="mountain m2"></div>
+    <div class="portal"><div></div></div><div class="pixel-tree tree1"></div><div class="pixel-tree tree2"></div>
+    <div class="art-caption">BUILD • SUPPORT • PROTECT</div>
+  </div>
+</section>
+
+<section class="role-grid">
+  <article class="role-card"><span class="role-icon">⬡</span><h3>Helper</h3><p>Support players, handle tickets and help keep the community safe.</p></article>
+  <article class="role-card"><span class="role-icon">♧</span><h3>Moderator</h3><p>Help enforce rules, review reports and maintain fair play.</p></article>
+  <article class="role-card"><span class="role-icon">♛</span><h3>Admin</h3><p>Support the team, manage staff and handle bigger responsibilities.</p></article>
+</section>
+
+<section id="requirements" class="panel section">
+  <div class="section-head"><span class="big-icon">✦</span><div><h2>Staff Requirements</h2><p>Check that you meet the requirements before applying.</p></div></div>
+  <ul class="checks">
+    <li>Be at least 16 years old (change this to match your server policy).</li>
+    <li>Be active on Snap MC and its Discord server.</li>
+    <li>Be respectful, mature and willing to follow the rules.</li>
+    <li>Have a good understanding of Minecraft and server rules.</li>
+    <li>Be available for an interview if shortlisted.</li>
+  </ul>
+  <p class="notice">Only apply with honest information. Meeting the requirements does not guarantee acceptance.</p>
+</section>
+
+<section id="apply" class="panel section">
+  <div class="section-head"><span class="big-icon">✎</span><div><h2>Staff Application</h2><p>Fill in the form carefully. Required fields are marked with *.</p></div></div>
+  <form id="applicationForm">
+    <div class="form-grid">
+      <label>Minecraft IGN *<input name="ign" required maxlength="32" placeholder="Your Minecraft username"></label>
+      <label>Discord username *<input name="discord" required maxlength="80" placeholder="username"></label>
+      <label>Age *<select name="age" required><option value="">Select age</option><option>Under 14</option><option>14–15</option><option>16–17</option><option>18+</option></select></label>
+      <label>Timezone *<input name="timezone" required maxlength="80" placeholder="e.g. IST (UTC+5:30)"></label>
+      <label>Role applying for *<select name="role" required><option value="">Select a role</option><option>Helper</option><option>Moderator</option><option>Admin</option></select></label>
+      <label>Previous staff experience *<select name="experience" required><option value="">Select experience</option><option>No previous experience</option><option>Under 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2+ years</option></select></label>
+      <label>Daily availability *<select name="hours" required><option value="">Select hours</option><option>Under 1 hour</option><option>1–2 hours</option><option>2–4 hours</option><option>4+ hours</option></select></label>
+      <label>Microphone availability<select name="mic"><option>Yes</option><option>No</option><option>Sometimes</option></select></label>
+    </div>
+    <label>Why do you want to join the Snap MC staff team? *<textarea name="motivation" required maxlength="1000" rows="4" placeholder="Tell us about your motivation..."></textarea></label>
+    <label>What would you do if a player was hacking? *<textarea name="hacker" required maxlength="1000" rows="4" placeholder="Explain how you would handle the situation..."></textarea></label>
+    <label>What would you do if another staff member abused permissions? *<textarea name="abuse" required maxlength="1000" rows="4" placeholder="Explain the steps you would take..."></textarea></label>
+    <label>Anything else we should know?<textarea name="extra" maxlength="1000" rows="3" placeholder="Optional"></textarea></label>
+    <label class="consent"><input type="checkbox" required> I confirm that my answers are honest and that I will follow Snap MC staff rules.</label>
+    <button class="btn primary" type="submit">Submit Application ↗</button>
+    <p id="formMessage" class="form-message" role="status"></p>
+  </form>
+</section>
+
+<section id="dashboard" class="panel section">
+  <div class="section-head"><span class="big-icon">▦</span><div><h2>Application Dashboard</h2><p>Starter preview: submissions on this device only. Not secure for a public launch.</p></div></div>
+  <div class="dashboard-tools">
+    <input id="adminPin" type="password" placeholder="Demo dashboard PIN (default: snapdemo)" aria-label="Demo dashboard PIN">
+    <button class="btn" id="unlockBtn" type="button">Unlock demo</button>
+    <button class="btn" id="exportBtn" type="button">Export CSV</button>
+  </div>
+  <p class="notice warning">Demo only: the PIN is not real security. Do not put sensitive or real applications on this prototype until server-side authentication and database permissions are configured.</p>
+  <div id="dashboardContent" hidden>
+    <div class="stats"><div><small>Total</small><b id="totalCount">0</b></div><div><small>Pending</small><b id="pendingCount">0</b></div><div><small>Accepted</small><b id="acceptedCount">0</b></div><div><small>Denied</small><b id="deniedCount">0</b></div></div>
+    <div class="table-wrap"><table><thead><tr><th>Player</th><th>Role</th><th>Submitted</th><th>Status</th><th>Update</th></tr></thead><tbody id="applicationsRows"></tbody></table></div>
+    <p id="emptyState">No demo applications yet. Submit the form above to test it.</p>
+  </div>
+</section>
+</main>
+<footer><span class="brand"><span class="crown">♛</span> SNAP MC</span><span>Building a better community.</span></footer>
+<script src="app.js"></script>
+</body>
+</html>
