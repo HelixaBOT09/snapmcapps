@@ -40,6 +40,7 @@ function renderDashboard() {
   const tbody = document.getElementById("applicationsRows");
   tbody.replaceChildren();
   items.forEach(item => {
+    if (item.status === "Pending") return;
     const tr = document.createElement("tr");
     const values = [item.ign, item.role, new Date(item.submittedAt).toLocaleDateString()];
     values.forEach(value => { const td = document.createElement("td"); td.textContent = value || "—"; tr.appendChild(td); });
