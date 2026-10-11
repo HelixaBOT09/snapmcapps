@@ -49,7 +49,7 @@
 
 <section id="apply" class="panel section">
   <div class="section-head"><span class="big-icon">✎</span><div><h2>Staff Application</h2><p>Fill in the form carefully. Required fields are marked with *.</p></div></div>
-  <form id="applicationForm" name="staff-applications" method="POST" data-netlify="true">
+  <form id="applicationForm" name="staff-applications" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
   <input type="hidden" name="form-name" value="staff-applications">
     <div class="form-grid">
       <label>Minecraft IGN *<input name="ign" required maxlength="32" placeholder="Your Minecraft username"></label>
