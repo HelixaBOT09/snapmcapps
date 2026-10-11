@@ -10,18 +10,37 @@ function readApplications() {
 function saveApplications(items) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
 }
-form.addEventListener("submit", (event) => {
+
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  const data = Object.fromEntries(new FormData(form).entries());
-  data.id = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()));
-  data.status = "Pending";
-  data.submittedAt = new Date().toISOString();
-  const items = readApplications();
-  items.unshift(data);
-  saveApplications(items);
-  form.reset();
-  message.textContent = "Demo application saved on this device. It has not been sent to a real staff team.";
-  renderDashboard();
+
+  const submitButton = form.querySelector('button[type="submit"]');
+  submitButton.disabled = true;
+  message.textContent = "Submitting application...";
+
+  try {
+    const formData = new FormData(form);
+    formData.set("form-name", "staff-applications");
+
+    const response = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      body: new URLSearchParams(formData).toString()
+    });
+
+    if (!response.ok) {
+      throw new Error("Submission failed");
+    }
+
+    message.textContent = "Application submitted successfully!";
+    form.reset();
+  } catch (error) {
+    message.textContent = "Submission failed. Please try again.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });
 document.getElementById("unlockBtn").addEventListener("click", () => {
   if (document.getElementById("adminPin").value !== "snapdemo") {
